@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="predict.css">
+    <title>Document</title>
+    <style>
+        body {
+    background-image: url(https://media.nationalgeographic.org/assets/photos/120/983/091a0e2f-b93d-481b-9a60-db520c87ec33.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    
+  }
+  
+  .fom {
+    background-color: hsl(235, 34%, 13%);
+    border-radius: 20px;
+    box-sizing: border-box;
+    height:825px;
+    padding: 20px;
+    width: 320px;
+
+  }
+  
+  .title {
+    color: #eee;
+    font-family: sans-serif;
+    font-size: 36px;
+    font-weight: 600;
+    margin-top: 30px;
+  }
+  
+  .subtitle {
+    color: #eee;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 5px;
+  }
+  
+  .input-container {
+    height: 50px;
+    position: relative;
+    width: 100%;
+  }
+  
+  .ic1 {
+    margin-top: 40px;
+  }
+  
+  .ic2 {
+    margin-top: 30px;
+  }
+  
+  .input {
+    background-color: #303245;
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #eee;
+    font-size: 18px;
+    height: 100%;
+    outline: 0;
+    padding: 4px 20px 0;
+    width: 100%;
+  }
+  
+  .cut {
+    background-color: #15172b;
+    border-radius: 10px;
+    height: 20px;
+    left: 20px;
+    position: absolute;
+    top: -20px;
+    transform: translateY(0);
+    transition: transform 200ms;
+    width: 76px;
+  }
+  
+  .cut-short {
+    width: 50px;
+  }
+  
+  .input:focus ~ .cut,
+  .input:not(:placeholder-shown) ~ .cut {
+    transform: translateY(8px);
+  }
+  
+  .placeholder {
+    color: #65657b;
+    font-family: sans-serif;
+    left: 20px;
+    line-height: 14px;
+    pointer-events: none;
+    position: absolute;
+    transform-origin: 0 50%;
+    transition: transform 200ms, color 200ms;
+    top: 20px;
+  }
+  
+  .input:focus ~ .placeholder,
+  .input:not(:placeholder-shown) ~ .placeholder {
+    transform: translateY(-30px) translateX(10px) scale(0.75);
+  }
+  
+  .input:not(:placeholder-shown) ~ .placeholder {
+    color: #808097;
+  }
+  
+  .input:focus ~ .placeholder {
+    color: #dc2f55;
+  }
+  
+  .submit {
+    background-color: #08d;
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #eee;
+    cursor: pointer;
+    font-size: 18px;
+    height: 50px;
+    margin-top: 38px;
+     outline: 0;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .submit:active {
+    background-color: #06b;
+  }
+  
+  .final{
+      position: absolute;
+      left: 61%;
+      font-size:400%;
+      font-weight: 600;
+      top:6%;
+      color: rgb(255, 111, 0);
+  }
+    </style>
+</head>
+<body>
+    <form class="fom" action="{{url_for('predict')}}" method="post">
+        <div class="title">Welcome!</div>
+        <div class="subtitle"><h1>know your crop</h1></div>
+        <div class="input-container ic1">
+          <input id="firstname" class="input" name="nitrogen" type="text" placeholder=" " />
+          <div class="cut"></div>
+          <label for="firstname" class="placeholder">Nitrogen</label>
+        </div>
+        <div class="input-container ic2">
+          <input id="lastname" class="input" name="phosporous" type="text" placeholder=" " />
+          <div class="cut"></div>
+          <label for="lastname" class="placeholder">Phosporus</label>
+        </div>
+        <div class="input-container ic2">
+            <input id="lastname" class="input"  name="humidity" type="text" placeholder=" " />
+            <div class="cut"></div>
+            <label for="lastname" class="placeholder">Humidity</label>
+          </div>
+          <div class="input-container ic2">
+            <input id="lastname" class="input"  name="temp" type="text" placeholder=" " />
+            <div class="cut"></div>
+            <label for="lastname" class="placeholder">Temperature</label>
+          </div>
+          <div class="input-container ic2">
+            <input id="lastname" class="input"  name="ph" type="text" placeholder=" " />
+            <div class="cut"></div>
+            <label for="lastname" class="placeholder">Ph</label>
+          </div>
+          <div class="input-container ic2">
+            <input id="lastname" class="input" name="rainfall" type="text" placeholder=" " />
+            <div class="cut"></div>
+            <label for="lastname" class="placeholder">rainfall in mm  </label>
+          </div>
+        <div class="input-container ic2">
+          <input id="email" class="input"  name="potassium" type="text" placeholder=" " />
+          <div class="cut cut-short"></div>
+          <label for="email" class="placeholder">Potassium</label>
+        </div>
+        <button type="text" class="submit">SEARCH</button>
+    </form>
+      <p class="final">Recommended crop: {{output}}</p>
+</body>
+</html>
